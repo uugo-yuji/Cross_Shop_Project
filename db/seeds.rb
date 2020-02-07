@@ -28,3 +28,28 @@ if Rails.env == 'development'
     { name: '九州・沖縄地域' }
   ])
 end
+
+# 本番
+if Rails.env == 'production'
+  (1..50).each do |i|
+    Board.create(title: "タイトル#{i}", body: "本文#{i}")
+  end
+
+  Tag.create([
+    { name: 'クロス' },
+    { name: '柄物クロス' },
+    { name: 'CF' }
+  ])
+
+  Area.create([
+    { name: '全国' },
+    { name: '北海道地域' },
+    { name: '東北地域' },
+    { name: '関東地域' },
+    { name: '中部地域' },
+    { name: '近畿地域' },
+    { name: '中国地域' },
+    { name: '四国地域' },
+    { name: '九州・沖縄地域' }
+  ])
+end
