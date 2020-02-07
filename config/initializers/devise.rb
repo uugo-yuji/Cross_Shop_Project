@@ -15,7 +15,7 @@ Devise.setup do |config|
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
   # deviseherokuエラー対処
-  config.secret_key = '99e3973593854bcd12eb54bb5b37c24656929d5d952ab65f7c299ccdbfb9c68069d74eb470b88173d72741e18451fb75b920adb81103573f08172fc823b7553b'
+  config.secret_key = ENV['SECRET_KEY_BASE']
 
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
