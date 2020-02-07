@@ -73,3 +73,9 @@ gem 'kaminari'
 # エラーメッセージ翻訳
 gem 'rails-i18n'
 
+# ユーザ認証
+gem 'devise'
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
+# ユーザ認証google//GOOGLE_APP_ID用
+gem 'dotenv-rails'
