@@ -15,7 +15,11 @@ Things you may want to cover:
 * Configuration
 
 * Database creation
-
+herokuの為
+gemファイルを読み込むときは以下のコマンド実行
+bundle install --without production
+このオプションをつけることによって、group :produciton do~end内以外のgemをインストールすることができる
+。
 * Database initialization
 
 * How to run the test suite
