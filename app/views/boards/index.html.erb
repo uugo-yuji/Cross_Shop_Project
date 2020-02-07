@@ -1,0 +1,61 @@
+<div class="d-flex align-items-center">
+  <h1>掲示板一覧</h1>
+  <div class="ml-auto boards__linkBox">
+    <%= form_tag boards_path, method: :get, class: 'boards__searchForm' do %>
+      <%= select_tag :tag_id,
+                      options_from_collection_for_select(Tag.all, :id, :name, params[:tag_id]),
+                      {
+                        prompt: 'タグでの絞り込み',
+                        class: 'form-control boards__select',
+                        onchange: 'submit(this.form);'
+                      }
+      %>
+    <% end %>
+    <!-- -->
+    <%= form_tag boards_path, method: :get, class: 'boards__searchForm' do %>
+      <%= select_tag :area_id,
+                      options_from_collection_for_select(Area.all, :id, :name, params[:area_id]),
+                      {
+                        prompt: '地域での絞り込み',
+                        class: 'form-control boards__select',
+                        onchange: 'submit(this.form);'
+                      }
+      %>
+    <% end %>
+
+    <%= link_to '新規作成', new_board_path, class: 'btn btn-outline-dark' %>
+  </div>
+</div>
+<!--   -->
+<% if flash[:notice] %>
+  <div class="alert alert-danger"><%= flash[:notice] %></div>
+<% end %>
+<% @boards.each do |board| %>
+<div class="card container" style="width: 600px; margin-bottom: 10px;">
+  <div class="card-body">
+    <h5 class="card-title"><%= board.title %></h5>
+      <% board.tags.each do |tag| %>
+        <span class="badge badge-primary"><%= tag.name %></span>
+      <% end %>
+      <br>
+      <ul>
+        <li id="user-name"><a href="#" class="card-subtitle mb-2 text-muted">ユーザ名</a></li>
+        <li id="post-time"><%= board.updated_at.to_s(:datetime_jp) %></li>
+        <li id="area">
+          <% board.areas.each do |area| %>
+            <span><%= area.name %></span>
+          <% end %>
+        </li>
+      </ul>
+      <p class="card-text"><%= simple_format(board.body) %></p>
+      <div class="text-right">
+        <%= link_to 'コメント', board, class: 'btn btn-outline-dark' %>
+    </div>
+  </div>
+</div>
+<% end %>
+
+
+<!-- -->
+
+<%= paginate @boards %>
